@@ -1,0 +1,10 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const bootstrap=fs.readFileSync('tests/verify-walls.cjs','utf8').split('function fixture')[0];
+eval(bootstrap.replace("const fs=require('fs'),vm=require('vm'),assert=require('assert');",'').replace('const run=','var run='));
+run('model.elements=[{id:"R-L-DIR",type:"roof",story:"s0",layer:"Structure",points:[{x:0,y:0},{x:14000,y:0},{x:14000,y:4000},{x:7000,y:4000},{x:7000,y:10000},{x:0,y:10000}],pitch:25,height:3000,overhang:600,thickness:200,roofType:"hip",roofFraming:{system:"trusses",spacing:600,wingDirection:"aligned"}}];var r=model.elements[0];var layout=generateRoofFraming(r);');
+const rows=run(`layout.members.filter(m=>/^(Common truss|Hip truss) bottom chord$/.test(m.type)).map(m=>({type:m.type,a:m.a,b:m.b,assembly:m.assembly}))`);
+assert(rows.length>0,'L-shaped roof should generate common/hip trusses');
+const axes=rows.map(m=>{const dx=m.b.x-m.a.x,dy=m.b.y-m.a.y,L=Math.hypot(dx,dy)||1;return {x:Math.round(Math.abs(dx/L)*1000)/1000,y:Math.round(Math.abs(dy/L)*1000)/1000}});
+const dominant=axes.reduce((best,a)=>a.x+a.y>best.x+best.y?a:best,axes[0]);
+for(const a of axes)assert(Math.abs(a.x-dominant.x)<0.01&&Math.abs(a.y-dominant.y)<0.01,'multi-wing truss directions must be consistent with dominant wing');
+console.log('PASS multi-wing direction consistency (wingDirection=aligned, V3.73 behaviour)',rows.length);

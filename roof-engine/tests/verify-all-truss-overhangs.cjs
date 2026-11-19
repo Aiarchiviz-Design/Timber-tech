@@ -1,0 +1,12 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const bootstrap=fs.readFileSync('tests/verify-walls.cjs','utf8').split('function fixture')[0];
+eval(bootstrap.replace("const fs=require('fs'),vm=require('vm'),assert=require('assert');",'').replace('const run=','var run='));
+run('model.elements=[{id:"R-OVERHANG",type:"roof",story:"s0",layer:"Structure",points:[{x:0,y:0},{x:13000,y:0},{x:13000,y:9000},{x:0,y:9000}],pitch:25,height:3000,overhang:609.6,thickness:200,roofType:"hip",roofFraming:{system:"trusses"}}];var h=generateRoofFraming(model.elements[0]);');
+assert(run('h.members.some(m=>m.type.startsWith("Front jack top chord")&&m.overhangExtended)'),'front jack top chords should extend to eaves');
+assert(run('h.members.some(m=>m.type.startsWith("Side jack top chord")&&m.overhangExtended)'),'side jack top chords should extend to eaves');
+assert(run('h.members.some(m=>m.type.startsWith("Hip carrier top chord")&&m.overhangExtended)'),'hip carrier top chords should extend to eaves');
+assert(run('h.members.some(m=>m.type.startsWith("Common truss top chord")&&m.overhangExtended)'),'common truss top chords should extend to eaves');
+assert(run('h.members.some(m=>m.type.startsWith("Hip truss top chord")&&m.overhangExtended)'),'hip truss top chords should extend to eaves');
+assert(run('h.members.some(m=>m.type.startsWith("Girder truss top chord")&&m.overhangExtended)'),'girder truss top chords should extend to eaves');
+assert(run('h.members.filter(m=>m.overhangExtended).every(m=>/top chord/i.test(m.type))'),'only top chords should receive eave extensions');
+console.log('PASS: 2 ft eave overhang applied to front jacks, side jacks, hip carriers, common, hip and girder trusses');

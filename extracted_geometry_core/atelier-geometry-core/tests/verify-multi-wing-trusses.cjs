@@ -1,0 +1,18 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');const bootstrap=fs.readFileSync('tests/verify-walls.cjs','utf8').split('function fixture')[0];eval(bootstrap.replace("const fs=require('fs'),vm=require('vm'),assert=require('assert');",'').replace('const run=','var run='));run('model.elements=[{id:"R-HIP",type:"roof",story:"s0",layer:"Structure",points:[{x:0,y:0},{x:13000,y:0},{x:13000,y:9000},{x:0,y:9000}],pitch:25,height:3000,overhang:450,thickness:200,roofType:"hip",roofFraming:{system:"trusses"}}];var r=model.elements[0];var h=generateRoofFraming(r);');for(const role of ['Girder truss','Front jack','Hip carrier','Side jack','Common truss'])assert(run(`h.members.some(m=>m.type.startsWith('${role}'))`),role);assert(run('h.members.every(m=>Number.isFinite(m.length)&&m.length>0&&roofMemberFaces(m).flat().every(p=>Number.isFinite(p.z)))'));console.log(run('h.members.length'));console.log('PASS hip assemblies');
+assert.equal(run('new Set(h.members.filter(m=>m.type==="Girder truss bottom chord").map(m=>m.assembly)).size'),4);
+assert(run('h.members.filter(m=>!(/top chord/i.test(m.type))).every(m=>m.a.x>=-1&&m.a.x<=13001&&m.b.x>=-1&&m.b.x<=13001&&m.a.y>=-1&&m.a.y<=9001&&m.b.y>=-1&&m.b.y<=9001)'));assert(run('h.members.some(m=>m.overhangExtended&&/Front jack top chord|Side jack top chord|Hip carrier top chord|Common truss top chord|Hip truss top chord|Girder truss top chord/i.test(m.type))'));
+assert.equal(run('roofFramingRows().reduce((n,r)=>n+r.quantity,0)'),run('h.members.length'));
+run('var oldCount=h.members.length;r.points=r.points.map(p=>({x:p.x*Math.cos(.4)-p.y*Math.sin(.4),y:p.x*Math.sin(.4)+p.y*Math.cos(.4)}));h=generateRoofFraming(r);');assert.equal(run('h.members.length'),run('oldCount'));
+run('r.roofFraming.girderPlies=3;h=generateRoofFraming(r)');assert.equal(run('h.members.filter(m=>m.type==="Girder truss bottom chord").length'),6);
+run('var oldZ=h.members[0].a.z;r.height+=250;h=generateRoofFraming(r)');assert(Math.abs(run('h.members[0].a.z-oldZ')-250)<.001);
+run('r.roofFraming.spacing=400;h=generateRoofFraming(r)');assert(run('h.members.length>oldCount'));
+console.log('PASS: rotated hip sets, girder plies, plan containment, cut quantities, spacing and height regeneration');
+run('r.points=[{x:0,y:0},{x:10000,y:0},{x:10000,y:4000},{x:16000,y:4000},{x:16000,y:12000},{x:10000,y:12000},{x:10000,y:17000},{x:6000,y:17000},{x:6000,y:10000},{x:0,y:10000}];r.height=3000;r.roofFraming={system:"trusses",spacing:600,hipSetback:1200};h=generateRoofFraming(r)');
+for(const role of ['Girder truss','Junction girder','Hip carrier','Front jack','Side jack','Hip truss'])assert(run(`h.members.some(m=>m.type.startsWith('${role}'))`),role);
+assert(run('new Set(h.members.map(m=>m.assembly.split("-")[2])).size>=2'));
+assert(run('h.members.every(m=>Number.isFinite(m.cutLength??m.length)&&roofMemberFaces(m).flat().every(p=>Number.isFinite(p.x)&&Number.isFinite(p.y)&&Number.isFinite(p.z)))'));
+assert(run('h.members.filter(m=>m.type.endsWith("bottom chord")).every(m=>inside(lerp(m.a,m.b,.5),roofBoundary(r)))'));
+assert.equal(run('new Set(h.members.map(m=>m.id)).size'),run('h.members.length'));
+assert.equal(run('roofFramingRows().reduce((n,r)=>n+r.quantity,0)'),run('h.members.length'));
+run('var count=h.members.length;r.points=r.points.map(p=>({x:p.x*Math.cos(.35)-p.y*Math.sin(.35),y:p.x*Math.sin(.35)+p.y*Math.cos(.35)}));h=generateRoofFraming(r)');assert.equal(run('h.members.length'),run('count'));
+console.log('PASS: multi-wing hip/junction sets, finite joined solids, contained bottom chords, quantities and rotated layout');

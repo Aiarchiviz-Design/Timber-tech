@@ -1,0 +1,39 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Roof engine – standalone 3D demo</title>
+<style>html,body{margin:0;height:100%;background:#f4f6f8;font:13px system-ui}#bar{position:fixed;top:8px;left:8px;background:#fffc;padding:8px;border-radius:8px;z-index:2}canvas{display:block}</style></head><body>
+<div id="bar">System <select id="sys"><option>trusses</option><option>rafters</option></select> Spacing <input id="sp" type="number" value="600" style="width:60px"> Pitch <input id="pt" type="number" value="25" style="width:45px"> <button id="go">Generate</button> <span id="info"></span></div>
+<script src="../core/00-helpers.js"></script><script src="../core/roof-footprint.js"></script><script src="../core/roof.js"></script>
+<script src="../core/truss-joints.js"></script><script src="../core/hip-trusses.js"></script><script src="../core/roof-framing.js"></script>
+<script type="importmap">{"imports":{"three":"../ui/vendor/three.module.js"}}</script>
+<script type="module">
+import * as THREE from 'three';import {OrbitControls} from '../ui/vendor/OrbitControls.js';
+// Host model (edit freely). Units are mm; plan x/y, elevation z.
+window.model={stories:[{id:'s0',name:'Level 1',elevation:0,height:3000}],elements:[{id:'R-001',type:'roof',story:'s0',layer:'Structure',
+ points:[[0,0],[14000,0],[14000,4300],[8000,4300],[8000,9100],[0,9100]].map(([x,y])=>({x,y})),pitch:25,height:3000,overhang:609.6,thickness:200,roofType:'hip',
+ roofFraming:{system:'trusses',spacing:600,width:45,depth:190,webDepth:90,heel:300,girderPlies:2,hipSetback:1828.8}}]};
+const COLORS={Common:'#bfe96e','Hip truss':'#54caba',Girder:'#ffba67','Junction':'#ffba67','Front jack':'#66afff','Side jack':'#b9a0ff','Hip carrier':'#ee91b9',Rafter:'#d9b38c'};
+const colorOf=t=>{for(const k in COLORS)if(t.startsWith(k))return COLORS[k];return '#c4ced7'};
+const scene=new THREE.Scene();scene.background=new THREE.Color('#f4f6f8');
+const cam=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,10,200000),ren=new THREE.WebGLRenderer({antialias:true});ren.setSize(innerWidth,innerHeight);document.body.appendChild(ren.domElement);
+scene.add(new THREE.HemisphereLight('#fff','#889',1.1));const sun=new THREE.DirectionalLight('#fff',1.2);sun.position.set(1,2,3);scene.add(sun);
+const ctl=new OrbitControls(cam,ren.domElement);let group;
+// engine -> three: world is x,y plan / z up, so rotate the group (three is y-up).
+function build(){
+  const e=model.elements[0],rf=e.roofFraming;rf.system=sys.value;rf.spacing=+sp.value;e.pitch=+pt.value;
+  if(group)scene.remove(group);group=new THREE.Group();group.rotation.x=-Math.PI/2;
+  const g=roofGeometry(e),framing=generateRoofFraming(e);
+  // roof surface (translucent)
+  for(const f of g.facets){const sh=new THREE.BufferGeometry(),v=[];for(let i=1;i<f.length-1;i++)for(const p of [f[0],f[i],f[i+1]])v.push(p.x,p.y,p.z);
+    sh.setAttribute('position',new THREE.Float32BufferAttribute(v,3));group.add(new THREE.Mesh(sh,new THREE.MeshBasicMaterial({color:'#9aa',transparent:true,opacity:.12,side:THREE.DoubleSide})))}
+  // members: roofMemberFaces(m) returns the timber solid as polygon faces (honours miter / plumb cuts)
+  const byColor={};
+  for(const m of framing.members){const faces=roofMemberFaces(m),c=colorOf(m.type);const arr=byColor[c]=byColor[c]||[];
+    for(const f of faces)for(let i=1;i<f.length-1;i++)for(const p of [f[0],f[i],f[i+1]])arr.push(p.x,p.y,p.z)}
+  for(const [c,v] of Object.entries(byColor)){const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(v,3));geo.computeVertexNormals();
+    group.add(new THREE.Mesh(geo,new THREE.MeshLambertMaterial({color:c,side:THREE.DoubleSide})))}
+  scene.add(group);info.textContent=framing.members.length+' members';
+  const bb=new THREE.Box3().setFromObject(group),ctr=bb.getCenter(new THREE.Vector3()),sz=bb.getSize(new THREE.Vector3()).length();
+  ctl.target.copy(ctr);cam.position.set(ctr.x+sz*.6,ctr.y+sz*.6,ctr.z+sz*.6);ctl.update();
+}
+go.onclick=build;build();(function loop(){requestAnimationFrame(loop);ren.render(scene,cam)})();
+addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();ren.setSize(innerWidth,innerHeight)});
+</script></body></html>

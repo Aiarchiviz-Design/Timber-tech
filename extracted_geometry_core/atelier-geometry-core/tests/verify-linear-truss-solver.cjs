@@ -1,0 +1,10 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const code=fs.readFileSync(require('path').join(__dirname,'../dist/truss-optimizer.js'),'utf8')+'\n;globalThis.__solve=trussSolveLinear2D;';
+const context={console,Math,Number,Set,Map,Array,Error};vm.createContext(context);vm.runInContext(code,context);
+const solve=context.__solve;
+const sample={nodes:[{id:'A',x:0,y:0},{id:'B',x:4,y:0},{id:'C',x:2,y:2}],members:[{id:'AB',a:'A',b:'B',E:2e11,A:.001},{id:'AC',a:'A',b:'C',E:2e11,A:.001},{id:'BC',a:'B',b:'C',E:2e11,A:.001}],supports:[{node:'A',ux:true,uy:true},{node:'B',uy:true}],loads:[{node:'C',fx:0,fy:-10000}]};
+const r=solve(sample);assert.equal(r.memberForces.length,3);assert(Math.abs(r.reactions[0].ryN-5000)<1e-5);assert(Math.abs(r.reactions[1].ryN-5000)<1e-5);assert(r.memberForces.find(m=>m.id==='AC').axialForceN<0);assert(r.memberForces.find(m=>m.id==='BC').axialForceN<0);
+assert.throws(()=>solve({...sample,supports:[{node:'A',ux:true,uy:true}]}),/Singular stiffness matrix/);
+assert.throws(()=>solve({...sample,nodes:[...sample.nodes,{id:'D',x:0,y:0}],members:[...sample.members,{id:'bad',a:'A',b:'D',E:2e11,A:.001}]}),/Zero-length/);
+assert.throws(()=>solve({...sample,members:sample.members.map(m=>({...m,A:0}))}),/A > 0/);
+console.log('Linear truss solver checks passed: benchmark reactions, member forces, unstable model, zero length, invalid area.');

@@ -1,0 +1,309 @@
+I reviewed the 262-page CadTech-Truss-Design-2.pdf, including the overall design summary, truss schedules, member sizing, optimization records, connection schedules, bracing information and individual truss analysis pages.
+
+My conclusion: The report is not yet structurally reliable. It contains useful preliminary truss geometry and member-sizing information, but there are significant inconsistencies in its calculations and some important structural checks are missing or insufficiently demonstrated.
+
+The most important issue is that the software reports 58 PASS / 0 FAIL, but the evidence in the report does not justify treating all 58 trusses as structurally safe.
+
+I would not use these results for fabrication or construction until the analysis engine is corrected and independently verified.
+1. Critical findings
+Check	Finding	Assessment
+Applied loads	Load application is inconsistent with the stated load categories	Critical
+Load combinations	Full ASCE 7 combinations are not demonstrated	Critical
+Member forces	Axial analysis is presented, but independent equilibrium verification is missing	Review
+NDS 2018 checks	PASS results have insufficiently documented calculation details	Critical
+Deflection	Different analysis sections show inconsistent values	Review
+Optimization	Member sizing and optimization change records contradict each other	Critical
+Girder connections	Actual connector capacities and fastener designs are missing	Critical
+Bracing	Generic recommendations, not a verified project-specific design	Critical
+Timber quantities	Useful preliminary estimate, but fabrication accuracy is unverified	Review
+
+2. Load calculation – major concern
+On page 1, the report specifies:
+Load category	Input
+Dead load	10 psf
+Roof live load	20 psf
+Snow load	0 psf
+Wind / uplift	20 psf
+Bottom chord live load	10 psf
+
+However, page 12 gives the TR-01 auto-screen load:
+- Line load: 1.150 kN/m
+- Total vertical load: 10.35 kN
+- Reactions: 5.17 kN at each support.
+Let's independently check the load conversion.
+
+Given:
+- Truss spacing = 1.97 ft ≈ 0.6 m
+- Span = 9 m
+- Dead load = 10 psf
+The dead-load-only line load should be approximately:
+\[
+w_D=10(0.04788)(0.6)
+\]
+
+\[
+\boxed{w_D=0.287\ kN/m}
+\]
+
+The total dead load would be:
+\[
+W_D=0.287(9)=2.58\ kN
+\]
+
+For a simply supported truss under uniform dead load:
+\[
+R_A=R_B=\frac{2.58}{2}=1.29\ kN
+\]
+
+But the report shows 5.17 kN per support.
+Potential load assignment error
+Interestingly, 1.150 kN/m is approximately equivalent to 40 psf at 0.6 m spacing.
+
+That suggests the software may be combining the 10 psf dead, 20 psf roof live and 10 psf bottom chord live values into one load case.
+
+This needs investigation. Bottom chord live load must be applied to the appropriate bottom-chord loading condition, not automatically added to roof dead load.
+
+The actual loading locations, combinations and tributary areas need to be verified before trusting any member forces.
+
+Source: pages 1, 12–13.
+3. NDS 2018 member sizing
+The report claims that all 58 trusses pass independent NDS ASD screening.
+
+However, there are several issues.
+
+TR-01 example – page 13
+
+The optimization audit reports:
+- Initial failed members: 4
+- Maximum initial D/C: 2.816
+- Final failed members: 0
+- Final maximum D/C: 0.520
+The report also identifies 2x4 members being upgraded to 2x6.
+
+That is reasonable as an optimization concept, but the change history is contradictory.
+
+Page 14 – Automatic NDS Change Log
+
+It records a sequence of changes:
+1. 2x6 / 2-ply
+2. 2x10 / 1-ply
+3. 2x8 / 1-ply
+4. 2x4 / 2-ply
+5. 2x6 / 1-ply
+These records do not provide a coherent explanation of the final design.
+
+The final member schedule shows 2x6 / 1-ply chords, but the intermediate changes are not sufficiently reconciled with the actual geometry and member properties.
+
+This is a serious optimization audit problem.
+
+Required correction:
+
+The optimization engine must:
+- Record the actual original section.
+- Change only the intended member.
+- Recalculate the entire affected truss.
+- Recalculate member forces where stiffness changes affect the structural model.
+- Verify the final section and ply count.
+- Store the final design state.
+- Generate the report from that exact final state.
+A historical change log must never override or contradict the actual final member schedule.
+
+Source: pages 12–14.
+4. Connection design – not complete
+Not structurally verified
+Pages 8–9 show the girder-to-jack connection schedule.
+
+For example:
+- HG-01 to JK-04: 1.15 kN
+- HG-01 to JK-05: 1.15 kN
+- HG-02 to JK-18: 1.25 kN
+There are several concerns.
+1. Many connection reactions are repeated even though the jack positions and geometry differ.
+2. Several joint coordinates are reported as 0.00 m.
+3. Seat width is displayed as null mm (3.5").
+4. No actual connector model has been selected.
+5. No verified fastener quantity, spacing, edge distance or withdrawal capacity is calculated.
+The hardware reference on page 11 suggests Simpson connectors, but these are candidate products, not designed connections.
+
+What CadTech needs:
+- Actual girder reaction at every jack connection.
+- Connector selection based on the real reaction.
+- Single-ply and multi-ply girder connection design.
+- Fastener shear and withdrawal checks.
+- Timber splitting and edge-distance checks.
+- Connector eccentricity checks.
+- Bearing and support load transfer.
+- Uplift connection design.
+A connection must be checked independently. A passing timber member does not mean its connection is safe.
+5. Deflection analysis
+The TR-01 report on page 12 shows:
+
+- NDS deflection: 0.00 / 50.0 mm.
+
+But page 13 shows:
+
+- Auto-screen deflection: 16.77 mm.
+
+These are different analysis outputs and are not adequately reconciled.
+
+The report specifies L/240 live and L/180 total as service criteria.
+
+For a 9,000 mm span:
+\[
+\Delta_{live}=\frac{9000}{240}=37.5\ mm
+\]
+
+\[
+\Delta_{total}=\frac{9000}{180}=50\ mm
+\]
+
+The 16.77 mm value cannot automatically be accepted as the final deflection because the report does not clearly establish which load case and serviceability combination produced it.
+
+The software should report separate:
+- Dead-load deflection.
+- Roof-live-load deflection.
+- Snow-load deflection.
+- Bottom-chord live-load deflection.
+- Wind-load displacement.
+- Total service-load deflection.
+- Camber, if specified.
+It must also calculate vertical displacement at every relevant joint, not just display a single summary value.
+6. Bracing analysis
+Page 5 contains general bracing recommendations:
+- Top chord restraint.
+- Bottom chord restraint.
+- Web-plane diagonal bracing.
+- Compression web restraint.
+- Gable-end bracing.
+However, the report does not demonstrate that these arrangements have been structurally verified for the actual trusses.
+
+Page 5 mentions 53 compression-web restraint locations.
+
+The software needs to establish, for each compression member:
+- Effective unbraced length.
+- Restraint direction.
+- Lateral support location.
+- Required restraint force.
+- Bracing member capacity.
+- Bracing connection capacity.
+- Permanent and temporary bracing requirements.
+Simply specifying a 2x4 continuous restraint is not enough to establish stability.
+7. Additional serious limitations
+The last page (262) explicitly states that the independent NDS screening excludes:
+- Full wind and seismic combinations.
+- Snow drift.
+- Sloped-roof snow coefficient.
+- Connection and plate design.
+- Bearing and uplift anchorage.
+- Full 3D stability.
+It also warns that the software output is not approved for fabrication.
+
+This is important: these are not merely documentation omissions. Some are missing structural design checks.
+8. Truss-specific observations
+There are 58 trusses in the schedule.
+
+The important groups are:
+Truss group	Reported auto D/C	My assessment
+Common TR-01 to TR-07	0.670	Recheck loads and NDS
+Girder HG-01	0.980	Highest priority
+Girder HG-02	0.660	Recheck load transfer
+Hip HT-01	0.950	Highest priority
+Hip HT-07	0.850	Recheck
+Hip HT-02	0.790	Recheck
+Jack trusses	0.080–0.090	Very low ratios need verification
+Hip carriers HC-01 to HC-04	0.320–0.390	Recheck connection loads
+
+The ratios are software-reported results, not independently verified capacities.
+
+I would prioritize HG-01, HT-01, HT-07 and all hip-carrier connections.
+9. What I would change in the CadTech analysis engine
+I recommend restructuring the analysis into the following calculation stages.
+Stage 1 – Geometry validation
+- Validate every node and member.
+- Detect disconnected members and duplicate nodes.
+- Validate member intersections and joint connectivity.
+- Check support positions and structural stability.
+
+Stage 2 – Load calculation
+- Calculate roof dead loads.
+- Calculate roof live loads.
+- Calculate snow loads and applicable roof coefficients.
+- Calculate bottom chord loads separately.
+- Calculate wind pressure and uplift.
+- Distribute loads to the correct trusses.
+- Generate applicable ASD load combinations.
+
+Stage 3 – Structural analysis
+- 2D truss stiffness-matrix solver.
+- Joint equilibrium verification.
+- Support reactions.
+- Member tension and compression.
+- Load-transfer analysis.
+- 3D stability and applicable secondary effects.
+
+Stage 4 – NDS member design
+- Tension capacity.
+- Compression capacity.
+- Column stability.
+- Bending capacity.
+- Shear capacity.
+- Combined axial and bending checks.
+- Slenderness and effective length.
+- Deflection and serviceability.
+
+Stage 5 – Connections
+- Metal connector plates.
+- Girder-to-jack connections.
+- Hip-carrier connections.
+- Multi-ply girder fastening.
+- Bearing and uplift anchorage.
+- Fastener and timber failure modes.
+
+Stage 6 – Automatic optimization
+- Try 2x4, 2x6, 2x8 and 2x10.
+- Try 1-ply, 2-ply and 3-ply.
+- Optimize each member independently where permitted.
+- Reanalyse after every change.
+- Verify all connections and restraints again.
+- Save the final verified calculation state.
+
+10. How the final report should behave
+I would change the current simple PASS/FAIL system to four statuses:
+Status	Meaning
+PASS	All required checks completed and satisfied
+FAIL	One or more calculated checks exceed capacity
+NOT VERIFIED	Required design check is missing
+INVALID MODEL	Geometry, loads or structural model is invalid
+
+Never display PASS when a required structural check has not been performed.
+
+For every truss, the software should provide:
+- Individual member forces.
+- Actual and allowable capacities.
+- D/C ratios for each failure mode.
+- Member sizes and ply counts.
+- Deflection values.
+- Support reactions.
+- Connection forces and capacities.
+- Bracing requirements.
+- Optimization history.
+- Final calculation summary.
+
+Final verdict
+Not ready for structural approval
+The PDF demonstrates a useful preliminary design workflow, but the analysis results cannot yet be trusted as construction-ready engineering calculations.
+
+My assessment:
+- Geometry and drawing generation: useful preliminary output.
+- Member sizing: needs recalculation and verification.
+- Load application: significant concern.
+- NDS optimization: inconsistent records.
+- Connections: incomplete.
+- Bracing: incomplete.
+- Overall structural approval: not established.
+
+One important distinction: I have identified demonstrable reporting inconsistencies and missing checks, but I cannot certify every individual member as wrong or right from this PDF alone. That requires the actual BIM geometry, calculation inputs and analysis implementation.
+
+My recommendation: Fix the calculation engine before improving the appearance of the reports. Otherwise, CadTech may produce very professional-looking truss drawings with incorrect structural results.
+
+I can take the next step by auditing the actual CadTech source code against these findings and identifying the exact calculation functions that need correction.

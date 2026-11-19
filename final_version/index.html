@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ARCHICAD 28 · BIM Studio Pro</title><meta name="description" content="Professional architectural CAD/BIM studio with synchronized 2D floor plans, 3D model, timber framing, and structural engineering."><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23006dae'/%3E%3Cpath d='M7 24L16 7L25 24M11 18H21' fill='none' stroke='white' stroke-width='3'/%3E%3C/svg%3E"><script>
+(function(){
+  window.addEventListener('unhandledrejection', function(e) {
+    var r = e && e.reason;
+    var msg = (r && (r.message || r.stack || String(r))) || '';
+    if (msg.indexOf('WebSocket') !== -1 || msg.indexOf('@vite/client') !== -1) {
+      e.preventDefault();
+      if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+    }
+  }, true);
+  window.addEventListener('error', function(e) {
+    var msg = (e && (e.message || e.filename || '')) || '';
+    if (msg.indexOf('WebSocket') !== -1 || msg.indexOf('@vite/client') !== -1) {
+      e.preventDefault();
+      if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+    }
+  }, true);
+
+  var _dummy = new Proxy({}, {
+    get: function(t, p) {
+      if (p === 'classList') return { add: function(){}, remove: function(){}, toggle: function(){ return false; }, contains: function(){ return false; } };
+      if (p === 'style') return {};
+      if (p === 'children') return [];
+      if (p === 'addEventListener' || p === 'removeEventListener') return function(){};
+      if (p === 'click' || p === 'focus' || p === 'select' || p === 'close' || p === 'showModal') return function(){};
+      if (p === 'getAttribute') return function(){ return null; };
+      if (p === 'setAttribute' || p === 'removeAttribute') return function(){};
+      if (p === 'getBoundingClientRect') return function(){ return { left: 0, top: 0, right: 0, bottom: 0, width: 0, height: 0 }; };
+      return undefined;
+    },
+    set: function() { return true; }
+  });
+  window.$ = function(s) { return document.querySelector(s) || _dummy; };
+  window.$$ = function(s) { return [...document.querySelectorAll(s)]; };
+})();
+</script><link rel="stylesheet" href="/style.css?v=20261108-v9">
+<style id="cadtech-core-styles">
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--ink:#293d3b;--muted:#899491;--green:#315d54;--green-light:#e9f0ec;--border:#e2e7e4;--paper:#fff;--bg:#f5f7f5}*{box-sizing:border-box}body{margin:0;font:14px 'DM Sans',Arial,sans-serif;color:var(--ink);height:100vh;overflow:hidden;background:var(--paper)}:where(button,input,select){font:inherit}:where(button:not(#truss-elevation-panel *):not(#truss-elevation-modal-mount *)){cursor:pointer;border:0;background:none;color:inherit;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:5px;white-space:nowrap}:where(button:not(#truss-elevation-panel *):not(#truss-elevation-modal-mount *)):hover{background:#eff3f0}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #638e7e;outline-offset:2px}button:disabled{opacity:.35;cursor:default}.icon{width:18px;height:18px;flex-shrink:0;stroke-width:1.6;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}header{height:54px;display:flex;align-items:center;padding:0 22px;border-bottom:1px solid var(--border);gap:44px;background:#ffffff}.brand{display:flex;align-items:center;gap:10px;font-family:Manrope,sans-serif;font-weight:800;font-size:22px;letter-spacing:-1px}.mark{background:var(--green);color:#fff;width:29px;height:31px;display:grid;place-items:center;border-radius:6px;font-size:23px}.brand-sub{font-size:9px;letter-spacing:1.8px;margin:4px 0 0 4px;color:#7e8a85;font-weight:600}nav{display:flex;gap:15px}nav button{font-size:13px;padding:7px 5px}.header-right{margin-left:auto;display:flex;align-items:center;gap:7px;font-size:12px;color:#8a9490}.local-indicator{width:5px;height:5px;background:#6c8a73;border-radius:50%}.avatar{margin-left:18px;width:30px;height:30px;border-radius:50%;background:#ebeee9;font-size:11px;color:#627567;font-weight:700}.projectbar{height:73px;display:flex;align-items:center;justify-content:space-between;padding:0 23px;background:#ffffff}.project-title{display:flex;align-items:center;gap:12px}.project-icon{border:1px solid var(--border);border-radius:7px;padding:10px;display:flex}.project-icon .icon{width:22px;height:22px}.project-title strong{font-size:16px;font-weight:600;display:block;margin-bottom:5px}.project-title div>span{display:block;font-size:12px;color:#8c9690}.project-chevron{margin-left:25px;color:#9aa19d}.project-actions{display:flex;gap:12px;align-items:center;max-width:calc(100vw - 350px);overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;flex-shrink:1}.pill{background:#f0f3ef;font-size:9px;letter-spacing:1px;color:#758378;border-radius:4px;padding:6px 8px;margin-right:13px}.primary{background:var(--green);color:white;padding:10px 17px;font-weight:500;font-size:12px}.primary:hover{background:#23483f}.subtle{padding:9px 13px;border:1px solid var(--border);font-size:12px}.ribbon{height:47px;background:#fafbf9;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 19px;gap:15px}.ribbon-group{display:flex;align-items:center;gap:3px;border-right:1px solid var(--border);padding-right:15px}.ribbon button{padding:7px 9px;font-size:12px}.ribbon .enabled{color:var(--green)}.key{font-size:9px;border:1px solid #dde4df;border-radius:3px;padding:1px 4px;color:#929b96;margin-left:6px}.ribbon-spacer{flex:1}main{height:calc(100vh - 211px);display:grid;grid-template-columns:177px minmax(0,1fr) 268px}.toolbox{border-right:1px solid var(--border);padding:20px 11px 12px;display:flex;flex-direction:column;overflow:auto}.panel-caption{font-size:10px;letter-spacing:1.5px;color:#919b95;display:flex;justify-content:space-between;padding:0 9px 17px}.tool-group-label{color:#9da59f;letter-spacing:1.2px;font-size:9px;margin:19px 10px 9px}.tool{display:flex;width:100%;justify-content:flex-start;padding:9px 11px;gap:12px;font-size:12px;margin-bottom:3px}.tool .shortcut{margin-left:auto;color:#9ea6a1;font-size:10px}.tool.active{background:var(--green-light);color:#2d584b;font-weight:600}.tool.active .shortcut{color:#6c8a7a}.toolbox-footer{margin-top:auto;padding:22px 9px 4px}.tiny-label{font-size:8px;letter-spacing:1.2px;color:#9da69f}.foundation{font-size:10px;display:flex;align-items:center;gap:6px;color:#83948a;margin-top:9px}.foundation .icon{width:13px}.workspace{min-width:0;display:flex;flex-direction:column}.view-tabs{height:43px;display:flex;align-items:stretch;border-bottom:1px solid var(--border);background:#fafbf9;padding-left:11px;overflow:auto;flex-shrink:0}.view-tab{font-size:11px;border-radius:0;padding:0 14px;color:#909991;border-right:1px solid #e9ede8;gap:7px}.view-tab .icon{width:15px}.view-tab.active{background:white;color:var(--green);border-bottom:2px solid var(--green)}.tab-dot{height:4px;width:4px;background:#6e8c7c;border-radius:50%;margin-left:7px}.tab-add{padding:0 14px;color:#9ca59d}.canvas-area{position:relative;flex:1;overflow:hidden;background:#f7f9f6}.canvas-area canvas{display:block;width:100%;height:100%;touch-action:none;outline:none}.canvas-heading{position:absolute;top:28px;left:29px;display:flex;align-items:center;gap:25px;pointer-events:none}.canvas-heading span:first-child{font-size:9px;letter-spacing:1.7px;color:#8b978e}.canvas-heading h1{font-family:Manrope,sans-serif;font-size:17px;letter-spacing:-.5px;font-weight:600;margin:8px 0 0}.canvas-heading .view-scale{font-size:10px;border-left:1px solid #dce2d9;padding-left:22px;color:#8b948b;margin-top:15px}.canvas-controls{position:absolute;top:27px;right:24px;display:flex;gap:6px}.canvas-controls button{font-size:11px;padding:8px 10px;background:#ffffffd9;border:1px solid #dfe6de;box-shadow:0 2px 5px #233e2910}.canvas-controls .icon{width:14px}.north{position:absolute;right:32px;top:98px;display:flex;flex-direction:column;align-items:center;color:#69816e;font-size:9px;gap:5px}.north svg{width:22px;height:34px}.floating-nav{position:absolute;right:20px;bottom:28px;border:1px solid #dfe5df;background:white;box-shadow:0 4px 13px #20352b08;border-radius:7px;display:flex;flex-direction:column;padding:5px;gap:3px}.floating-nav button{height:30px;width:29px}.floating-nav .icon{width:15px}.floating-nav>span{height:1px;background:var(--border);margin:2px 3px}.model-badge{position:absolute;left:25px;bottom:24px;display:flex;align-items:center;gap:7px;color:#6f8276;background:#ffffffc4;border:1px solid #e2e8e0;border-radius:20px;padding:7px 12px;font-size:10px}.live-dot{width:5px;height:5px;border-radius:50%;background:#74937b;display:inline-block}.command-bar{height:35px;display:flex;align-items:center;border-top:1px solid var(--border);gap:10px;padding:0 18px;font-size:10px;color:#929c93;flex-shrink:0}.command-symbol{font-size:19px;color:#758d7b}.command-escape{margin-left:auto;font-size:9px;color:#a5ada6}.inspector{border-left:1px solid var(--border);overflow-y:auto}.inspector-tabs{height:43px;display:flex;border-bottom:1px solid var(--border);padding:0 17px;gap:24px}.inspector-tabs button{font-size:12px;border-radius:0;color:#8b9690}.inspector-tabs button.active{border-bottom:2px solid var(--green);color:var(--green);font-weight:600}.property-heading{padding:20px 19px 15px;display:flex;align-items:center;gap:11px}.property-heading .element-symbol{display:grid;place-items:center;background:#f0f4ef;width:36px;height:36px;border:1px solid #e2e8df;border-radius:7px;color:#6b806e}.property-heading strong{font-size:13px;display:block;margin-bottom:4px}.property-heading small{font-size:10px;color:#949e96}.selection-count{margin-left:auto;border:1px solid var(--border);border-radius:4px;font-size:10px;padding:4px 6px;color:#859389}.section-header{display:flex;align-items:center;justify-content:space-between;font-size:9px;letter-spacing:1.2px;color:#8f9b91;padding:17px 19px 13px;border-top:1px solid var(--border)}.section-header button{font-size:17px;padding:0 4px}.field{display:grid;grid-template-columns:1fr 125px;align-items:center;margin:0 18px 12px;font-size:11px;color:#85918a;gap:8px}.field input,.field select{width:100%;border:1px solid #dfe5df;background:#fcfdfb;border-radius:4px;height:29px;padding:0 8px;font-size:11px;color:#44584a;min-width:0}.field .input-unit{position:relative}.input-unit input{padding-right:28px}.input-unit span{position:absolute;right:8px;top:9px;font-size:9px;color:#a0a9a0}.swatch{width:13px;height:13px;background:#c3c8b7;border-radius:3px;display:inline-block}.hosted-row{margin:0 18px 10px;display:flex;align-items:center;gap:7px;font-size:10px;color:#75847a}.hosted-row button{margin-left:auto;font-size:10px;color:var(--green)}.navigator{margin-top:18px}.tree-root{display:flex;align-items:center;gap:7px;font-size:11px;margin:0 20px 12px}.tree-root .icon{width:14px}.tree-label{font-size:10px;color:#929d94;padding:5px 21px}.story-row,.tree-view{width:calc(100% - 26px);margin:3px 13px;display:flex;justify-content:flex-start;gap:9px;padding:7px 10px 7px 22px;font-size:10px}.story-row.active{color:var(--green);background:#edf3ec}.story-row .icon,.tree-view .icon{width:13px;height:13px}.story-row small{margin-left:auto;color:#93a090;font-size:9px}.layer-heading{margin-top:19px}.layer-row{display:flex;gap:8px;align-items:center;margin:0 18px 10px;font-size:10px;color:#728176}.layer-row .layer-color{width:6px;height:6px;border-radius:2px}.layer-row button{margin-left:auto;padding:2px}.layer-row .icon{width:14px;height:14px}.layer-row.off{opacity:.45}footer{height:37px;border-top:1px solid var(--border);display:flex;align-items:center;padding:0 19px;gap:20px;background:#fafbf9;font-size:10px;color:#85938a}.tracker{display:flex;align-items:center;gap:8px}.axis{font-size:10px;font-weight:600}.x{color:#a37a72}.y{color:#6d8b74}.tracker input{border:0;background:transparent;width:55px;font-size:10px;color:#526557}.tracker button{font-size:15px}.footer-middle{display:flex;align-items:center;gap:20px;border-left:1px solid var(--border);padding-left:20px}.footer-middle button{font-size:10px}.footer-end{margin-left:auto;display:flex;gap:8px;align-items:center}#selection-tip{position:absolute;background:#315d54;color:#fff;font-size:10px;border-radius:4px;padding:6px 9px;pointer-events:none;display:none}#toast{position:fixed;bottom:58px;left:50%;transform:translate(-50%,12px);background:#294e44;color:#fff;padding:12px 20px;border-radius:7px;font-size:12px;box-shadow:0 8px 30px #1e422c24;opacity:0;pointer-events:none;transition:.2s;z-index:20}#toast.show{opacity:1;transform:translate(-50%,0)}.hidden{display:none!important}#menu-popover{position:fixed;z-index:30;background:white;min-width:190px;padding:6px;border:1px solid var(--border);box-shadow:0 12px 30px #223d3020;border-radius:7px}#menu-popover button{display:flex;width:100%;justify-content:flex-start;padding:10px;font-size:12px}dialog{border:1px solid var(--border);border-radius:12px;width:470px;color:var(--ink);padding:23px;box-shadow:0 20px 90px #243d3030}dialog::backdrop{background:#223c3740;backdrop-filter:blur(3px)}.modal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.modal-top h2{font-family:Manrope,sans-serif;font-size:19px;margin:0}.modal-top button{padding:6px}.modal-top .icon{width:18px}.modal-copy{font-size:13px;line-height:1.7;color:#7b897f}.modal-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}.modal-field{display:flex;justify-content:space-between;align-items:center;margin:16px 0;font-size:13px}.modal-field input{padding:9px;width:160px;border:1px solid var(--border);border-radius:4px}.help-list{font-size:13px;line-height:2.1;color:#74847a}#schedule-panel{position:absolute;inset:110px 26px 75px;overflow:auto;background:white;border:1px solid var(--border);border-radius:6px}:where(table:not(#truss-elevation-panel *):not(#truss-elevation-modal-mount *)){border-collapse:collapse;width:100%;font-size:12px}:where(th:not(#truss-elevation-panel *):not(#truss-elevation-modal-mount *)){text-align:left;background:#f0f4ef;color:#778b7c;font-size:10px;letter-spacing:.6px}:where(td:not(#truss-elevation-panel *):not(#truss-elevation-modal-mount *)),:where(th:not(#truss-elevation-panel *):not(#truss-elevation-modal-mount *)){padding:13px 16px;border-bottom:1px solid var(--border)}tbody tr{cursor:pointer}tbody tr:hover{background:#f0f5ef}.empty-prop{font-size:11px;color:#8c9b91;line-height:1.8;padding:0 19px 16px}.status-label{font-size:9px;padding:5px 8px;background:#edf3ed;color:#6e8774;display:inline-block;border-radius:4px}.prop-section{padding-bottom:5px}.navigator-focus #properties{display:none}.navigator-focus .navigator{margin-top:0}@media(min-width:1600px){main{grid-template-columns:190px minmax(0,1fr) 290px}.tool{font-size:14px}.view-tab{font-size:13px}.field{font-size:12px}.tree-view,.story-row{font-size:12px}}@media(max-width:1100px){main{grid-template-columns:145px minmax(0,1fr) 230px}.brand-sub,.pill{display:none}header{gap:20px}.ribbon{gap:7px}.ribbon button{font-size:11px;padding:7px}.ribbon-group{padding-right:7px}.field{grid-template-columns:1fr 108px;margin-left:13px;margin-right:13px}.view-tab{padding:0 10px}.footer-middle{gap:9px}.footer-middle>span:last-child{display:none}.toolbox{padding-left:5px;padding-right:5px}}@media(max-width:800px){header{padding:0 12px;height:46px}.brand{font-size:18px}nav{gap:3px}nav button{font-size:11px}.header-right{display:none}.projectbar{padding:0 12px;height:64px}.project-title strong{font-size:13px}.project-title div>span,.project-chevron{display:none}.project-actions{gap:6px;max-width:calc(100vw - 150px);overflow-x:auto;flex-shrink:1}.project-actions button{font-size:10px;padding:8px}.ribbon-group button{font-size:0;gap:0}.ribbon-group .key{display:none}.ribbon{height:43px;padding:0 8px}.ribbon-spacer{display:none}main{height:calc(100vh - 190px);grid-template-columns:51px minmax(0,1fr)}.toolbox{padding-top:12px}.panel-caption,.tool-group-label,.toolbox-footer{display:none}.tool{font-size:0;justify-content:center;padding:10px 5px;gap:0}.shortcut{display:none}.inspector{display:none}.view-tabs{padding-left:0}.view-tab{font-size:10px;padding:0 9px}.view-tab[data-view=section],.view-tab[data-view=schedule],.tab-add{display:none}.canvas-heading{left:15px;top:20px}.canvas-heading h1{font-size:14px}.canvas-controls{right:12px;top:21px}.canvas-controls button{font-size:10px}.canvas-controls .icon{display:none}.view-scale{display:none}.north{right:20px}.footer-middle{display:none}footer{padding:0 10px;gap:5px}.footer-end{font-size:9px}.command-escape{display:none}.command-bar{font-size:9px;padding:0 10px}.model-badge{left:13px;font-size:9px}}
+
+.wall-palette{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:2px;background:#fff;border:1px solid #dce5d9;border-radius:7px;padding:4px;box-shadow:0 4px 20px #29452d12}.wall-palette button{width:29px;height:29px}.wall-palette .icon{width:15px;height:15px}.wall-property-actions{display:flex;flex-wrap:wrap;gap:7px;margin:8px 18px 16px}.wall-property-actions button{font-size:10px;padding:7px 8px}.wall-property-actions .icon{width:13px}.model-badge{bottom:65px}@media(max-width:800px){.wall-palette{bottom:14px}.model-badge{bottom:60px}}
+
+/* Model viewport: the building takes priority; the inspector is available on demand. */
+.ribbon{overflow-x:auto;scrollbar-width:none}.ribbon-group{flex-shrink:0}.ribbon>button{flex-shrink:0}.model-view .ribbon-group button{font-size:0;gap:0}.model-view .ribbon-group button .key{display:none}.model-view main,.model-view{--viewport-panel:0px}main.model-view{grid-template-columns:56px minmax(0,1fr) var(--viewport-panel)}main.model-view .inspector{display:none}main.model-view.inspector-open{--viewport-panel:268px}main.model-view.inspector-open .inspector{display:block}main.model-view .toolbox{padding:12px 5px}main.model-view .tool{font-size:0;justify-content:center;padding:10px 5px;gap:0}main.model-view .shortcut,main.model-view .panel-caption,main.model-view .tool-group-label,main.model-view .toolbox-footer{display:none}main.model-view.viewport-focus{grid-template-columns:0 minmax(0,1fr) 0}main.model-view.viewport-focus .toolbox,main.model-view.viewport-focus .inspector{display:none}.camera-toolbar{position:absolute;top:23px;right:22px;display:flex;align-items:center;gap:5px;border:1px solid #d7e0d9;border-radius:6px;background:#ffffffdd;padding:4px;box-shadow:0 3px 12px #324b3910}.camera-toolbar select{border:0;background:transparent;color:#5b7164;font-size:11px;padding:5px 3px;outline-offset:0}.camera-toolbar button{padding:5px 7px;font-size:11px;color:#58715e}.camera-toolbar .icon{width:14px;height:14px}.camera-toolbar .enabled{background:#e4eee4}.view-cube{position:absolute;right:24px;top:96px;width:96px;display:flex;flex-direction:column;align-items:center;color:#7e9482}.cube-top{font-size:8px;letter-spacing:1.2px;padding:5px 18px;background:#eef3eb;border:1px solid #c9d5c7;transform:skewX(-15deg);border-radius:2px;box-shadow:0 3px 6px #40544110}.cube-row{display:flex;align-items:center;justify-content:center;margin-top:3px}.cube-row>button:not(.cube-center){font-size:19px;width:20px}.cube-center{background:#f7f9f4;border:1px solid #c7d5c6;padding:9px;border-radius:4px}.cube-center .icon{width:28px;height:28px;stroke-width:1}.cube-bottom{display:flex;gap:5px;margin-top:4px}.cube-bottom button{font-size:8px;letter-spacing:.7px;padding:3px 4px;border:1px solid #d0dccd;border-radius:2px;background:#f7f9f4}.view-cube select{border:none;background:transparent;font-size:9px;color:#8b9c8f;margin-top:8px;text-align:center;width:92px}.selection-model{position:absolute;bottom:57px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:9px;background:#ffffffeb;border:1px solid #d9e4da;border-radius:6px;padding:8px 11px;box-shadow:0 3px 12px #364b3210;font-size:11px;color:#6f8576;white-space:nowrap}.selection-model button{font-size:10px;color:#467555;border-left:1px solid #dce5db;border-radius:0;padding-left:10px}#camera-projection-label{font-size:9px;color:#8b9c8e;padding-left:7px;border-left:1px solid #dce5db}main.model-view .model-badge{left:21px;bottom:21px;font-size:9px}main.model-view .floating-nav{bottom:25px}main.model-view .canvas-heading{top:23px;left:25px}main.model-view .canvas-heading .view-scale{display:none}main.model-view .view-tab{font-size:11px}main.model-view .canvas-heading h1{font-size:18px}@media(max-width:850px){main.model-view.inspector-open{--viewport-panel:230px}.camera-toolbar{right:12px;top:22px}.camera-toolbar select{font-size:10px}.camera-toolbar button{font-size:0;gap:0}.view-cube{right:12px}.selection-model{bottom:58px;font-size:10px}main.model-view .canvas-heading{left:18px}main.model-view .model-badge{left:13px;font-size:8px}}@media(max-width:600px){main.model-view.inspector-open{grid-template-columns:40px minmax(0,1fr) 0}main.model-view.inspector-open .inspector{position:absolute;top:153px;right:0;bottom:37px;width:250px;background:#fff;z-index:10;box-shadow:-5px 0 20px #34483020}.camera-toolbar{top:72px;left:16px;right:auto}.view-cube{top:119px;width:80px}.camera-toolbar button{font-size:10px}main.model-view .canvas-heading h1{font-size:16px}.selection-model #camera-projection-label{display:none}main.model-view .model-badge{display:none}}
+
+.workspace,.canvas-area,.toolbox,.inspector{min-height:0}.workspace{overflow:hidden}
+
+body.model-view header{height:44px}body.model-view .projectbar{height:58px}body.model-view .ribbon{height:40px}main.model-view{height:calc(100vh - 179px)}main.model-view.viewport-focus{position:fixed;inset:0 0 37px;height:auto;z-index:9;background:#f4f7f3}main.model-view.viewport-focus .view-tabs{height:36px}.view-cube{top:91px}main.model-view .canvas-heading{top:19px}.camera-toolbar{top:19px}@media(max-width:800px){main.model-view{height:calc(100vh - 179px)}}
+
+.draft-tracker{position:absolute;left:20px;bottom:54px;top:auto;width:auto!important;max-width:fit-content!important;height:28px!important;min-height:28px!important;max-height:28px!important;display:inline-flex!important;align-items:center;gap:3px;background:#ffffff;border:1px solid #cbd5e1;border-radius:5px;padding:2px 4px;box-shadow:0 4px 16px rgba(0,0,0,0.12);font-size:10px;z-index:12;user-select:none;box-sizing:border-box;transition:box-shadow .15s ease;overflow:hidden}
+.draft-tracker.hidden{display:none!important}
+.draft-tracker.minimized .tracker-body{display:none!important}
+.draft-tracker.minimized{width:auto!important;max-width:none!important;padding:2px 3px!important}
+.tracker-tab-pill{display:inline-flex;align-items:center;gap:3px;background:#315d54;color:#fff;border:0;border-radius:3px;padding:2px 6px;font-size:9px;font-weight:700;letter-spacing:.4px;cursor:pointer;height:22px;line-height:1;transition:background .12s}
+.tracker-tab-pill:hover{background:#23483f}
+.tracker-tab-icon{font-size:10px;opacity:.9}
+.tracker-body{display:flex;align-items:center;gap:3px}
+.tracker-field{display:inline-flex;align-items:center;gap:2px;background:#f8fafc;border:1px solid #cbd5e1;border-radius:3px;padding:1px 4px;height:22px;box-sizing:border-box}
+.tracker-field:focus-within{background:#f0fdf4;border-color:#315d54;box-shadow:0 0 0 1px #315d54}
+.tracker-tag{color:#64748b;font-size:9px;font-weight:700;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.tracker-field input{background:transparent;border:0;outline:none;color:#1e293b;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;font-weight:600;width:46px;padding:0;text-align:right;-moz-appearance:textfield}
+.tracker-field input::-webkit-outer-spin-button,.tracker-field input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.tracker-field input:focus{color:#315d54}
+.tracker-unit{color:#94a3b8;font-size:8px;margin-left:1px}
+.tracker-commit{background:#315d54;color:#fff;border:0;border-radius:3px;width:22px;height:22px;font-size:10px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:background .12s}
+.tracker-commit:hover{background:#23483f}
+.clip-panel{position:absolute;right:22px;top:64px;width:225px;padding:15px;background:#ffffffef;border:1px solid #cedbd1;border-radius:6px;box-shadow:0 7px 24px #29463715;color:#718879;z-index:3;font-size:11px}.clip-heading{display:flex;align-items:center;justify-content:space-between;font-size:9px;letter-spacing:1px;margin-bottom:12px}.clip-heading button{padding:2px}.clip-heading .icon{width:13px;height:13px}.clip-toggle{display:flex;align-items:center;gap:7px}.clip-toggle input{accent-color:#537c5c}.clip-fields{display:flex;gap:12px;margin:14px 0}.clip-fields label{display:flex;align-items:center;gap:5px}.clip-fields select{border:1px solid #d1ddcf;border-radius:3px;padding:4px;font-size:10px;color:#698161}.clip-position{display:flex;align-items:center;justify-content:space-between}.clip-position input{width:83px;border:1px solid #d3dfd0;border-radius:3px;padding:5px;font-size:11px;color:#66805c}#cut-slider{width:100%;accent-color:#678b61;margin:14px 0}.clip-panel .subtle{font-size:10px;padding:7px 9px;width:100%}.wall-palette{max-width:calc(100% - 145px);overflow-x:auto}main.model-view.inspector-open .camera-toolbar{top:67px}main.model-view.inspector-open .view-cube{top:116px}main.model-view.inspector-open .clip-panel{top:111px}@media(max-width:700px){.clip-panel{right:12px;top:112px}.wall-palette{max-width:calc(100% - 35px)}.draft-tracker{left:8px;bottom:52px;max-width:calc(100vw - 16px);overflow-x:auto}.camera-toolbar{gap:1px}.camera-toolbar button{padding:5px}}
+
+main.viewport-focus .workspace { grid-column: 1 / -1; width: 100%; }
+main.truss-elevation-full { grid-template-columns: 0 minmax(0,1fr) 0 !important; }
+main.truss-elevation-full > .toolbox, main.truss-elevation-full > .inspector { display: none !important; }
+main.truss-elevation-full > .workspace { grid-column: 1 / -1; width: 100%; }
+
+/* v3.20 CadTech-style 3D viewport (viewport3d.js) */
+.viewport3d{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;outline:none;cursor:grab}
+.viewport3d:active{cursor:grabbing}
+.cad-display{position:absolute;top:96px;left:24px;z-index:3;width:196px;padding:12px 14px 12px;background:#fffffff2;border:1px solid #d9e1e8;border-radius:10px;box-shadow:0 6px 18px #0f172a14;font:12px/1.35 Inter,system-ui,sans-serif;color:#334155}
+.cad-display[hidden]{display:none}
+.cad-display-title{font-size:10px;letter-spacing:.12em;font-weight:700;color:#475569;margin-bottom:8px}
+.cad-display-layers{display:grid;grid-template-columns:1fr;gap:5px}
+.cad-display label{display:flex;align-items:center;gap:8px;cursor:pointer}
+.cad-display input[type=checkbox]{accent-color:#3b6f55;margin:0}
+.cad-display-color{margin-top:10px;flex-direction:column;align-items:stretch!important;gap:4px!important}
+.cad-display-color select{width:100%;padding:5px 6px;border:1px solid #cbd5e1;border-radius:6px;background:#fff;color:#334155;font:inherit}
+.vp3d-hint{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:2;font:11px Inter,system-ui,sans-serif;color:#64748b;pointer-events:none;white-space:nowrap}
+.vp3d-hint[hidden]{display:none}
+
+/* ==========================================================================
+   ARCHICAD PROFESSIONAL CAD/BIM WORKSPACE STYLES
+   ========================================================================== */
+
+/* Archicad Info Box (Context Parameter Bar) */
+.info-box {
+  height: 42px;
+  background: #f6f8f6;
+  border-bottom: 1px solid #dce4dd;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+  overflow-x: auto;
+  flex-shrink: 0;
+  font-size: 11px;
+  color: #3b4e45;
+  scrollbar-width: thin;
+}
+.info-box::-webkit-scrollbar { height: 4px; }
+.info-box::-webkit-scrollbar-thumb { background: #cbd8ce; border-radius: 2px; }
+.info-section {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.info-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #7b8e83;
+  text-transform: uppercase;
+  margin-right: 2px;
+}
+.info-btn-group {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #d1ded4;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.info-btn {
+  padding: 4px 7px;
+  font-size: 11px;
+  height: 26px;
+  border-radius: 0;
+  border: 0;
+  color: #55685d;
+}
+.info-btn.active {
+  background: #2a584a;
+  color: #fff;
+}
+.info-input-wrap {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #d1ded4;
+  border-radius: 4px;
+  height: 26px;
+  padding: 0 6px;
+  gap: 4px;
+}
+.info-input-wrap input {
+  border: 0;
+  background: transparent;
+  width: 58px;
+  font-size: 11px;
+  color: #273b32;
+  padding: 0;
+  outline: none;
+}
+.info-input-wrap span {
+  font-size: 9px;
+  color: #8fa094;
+}
+.info-select {
+  height: 26px;
+  border: 1px solid #d1ded4;
+  background: #fff;
+  border-radius: 4px;
+  padding: 0 6px;
+  font-size: 11px;
+  color: #384c41;
+}
+.info-divider {
+  width: 1px;
+  height: 20px;
+  background: #d8e3da;
+  flex-shrink: 0;
+}
+
+/* Floating Archicad Pet Palette & Large Stud Action Popup */
+.pet-palette {
+  position: absolute;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  background: #22332e;
+  border: 1px solid #374f47;
+  border-radius: 6px;
+  padding: 3px;
+  box-shadow: 0 6px 20px rgba(18, 32, 27, 0.35);
+  color: #e2ede7;
+}
+.pet-palette:not(.stud-popup) button {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  color: #ccdcd3;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pet-palette:not(.stud-popup) button:hover {
+  background: #39524a;
+  color: #fff;
+}
+.pet-palette:not(.stud-popup) button.active {
+  background: #0096c7;
+  color: #fff;
+}
+.pet-palette .icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Archicad Navigator Map Tabs */
+.nav-map-bar {
+  display: flex;
+  background: #edf2ee;
+  border-bottom: 1px solid var(--border);
+  padding: 4px 8px;
+  gap: 4px;
+}
+.nav-map-btn {
+  flex: 1;
+  padding: 5px 2px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #63776b;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.nav-map-btn.active {
+  background: #fff;
+  color: #274b3f;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.nav-map-btn .icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* Archicad Quick Options Bar (Footer additions) */
+.quick-options {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+}
+.quick-btn {
+  background: #fff;
+  border: 1px solid #dbe3dc;
+  border-radius: 3px;
+  padding: 3px 7px;
+  color: #4b6154;
+  font-size: 10px;
+}
+.quick-btn:hover {
+  background: #edf3ee;
+}
+
+/* Trace & Reference Indicator */
+.trace-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #d5e0d8;
+  background: #fff;
+  font-size: 11px;
+}
+.trace-indicator.active {
+  background: #fff3ea;
+  border-color: #f7a974;
+  color: #b24d08;
+}
+.trace-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f77f00;
+}
+
+/* Pipette & Syringe parameter transfer */
+.pick-indicator {
+  cursor: crosshair !important;
+}
+
+#wand-btn.active, #wand-btn.manual-active {
+  background: #e0f2fe;
+  color: #0369a1;
+  border-color: #7dd3fc;
+  font-weight: 600;
+}
+#pipette-btn.active, #syringe-btn.active {
+  background: #fef3c7;
+  color: #b45309;
+  border-color: #fcd34d;
+  font-weight: 600;
+}
+
+/* Real-Time Structural EWP Floor Framing & Beam Sizing HUD */
+.ewp-hud {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 330px;
+  max-height: calc(100% - 32px);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+  padding: 12px;
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: 11.5px;
+  color: #1e293b;
+  z-index: 25;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+.ewp-hud.collapsed .ewp-hud-body {
+  display: none !important;
+}
+.ewp-hud-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.subtle-icon-btn {
+  background: transparent;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 11px;
+  cursor: pointer;
+  color: #475569;
+}
+.subtle-icon-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* Exterior wall OSB sheathing option (12 mm) */
+.osb-toggle{display:inline-flex;align-items:center;gap:6px;padding:7px 8px;border:1px solid #99f6e4;border-radius:5px;background:#f0fdfa;color:#115e59;cursor:pointer;white-space:nowrap;font-size:11px;font-weight:600;line-height:1}.osb-toggle input{width:13px;height:13px;margin:0;accent-color:#0f766e;cursor:pointer}.osb-toggle b{font-size:9px;letter-spacing:.4px;border-radius:3px;padding:3px 4px;background:#ccfbf1;color:#0f766e}.osb-toggle.off{background:#f8fafc;border-color:#cbd5e1;color:#64748b}.osb-toggle.off b{background:#e2e8f0;color:#475569}@media(max-width:1100px){.osb-toggle{font-size:10px;padding:6px 5px;gap:4px}}@media(max-width:800px){.osb-toggle{font-size:9px;padding:6px 4px;gap:3px}.osb-toggle span{display:none}}
+
+/* Ireland / Eurocode wall-panel design brief */
+.ie-design-layout{display:flex;flex-direction:column;gap:12px;max-height:100%;font-size:12px;color:#34483b}
+.ie-design-layout h3{font-size:13px;font-weight:700;color:#294d3c;margin:10px 0 3px;padding-bottom:6px;border-bottom:1px solid #dbe5db}
+.ie-note{background:#f7f8f4;border:1px solid #dce4d9;border-left:3px solid #b78a3b;border-radius:5px;padding:10px 12px;font-size:11px;line-height:1.6;color:#59675c}
+.ie-standards{padding-left:18px;margin:7px 0;line-height:1.65;font-size:11px;color:#59675c}
+.ie-standards li{margin:2px 0}
+.ie-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 12px;padding:13px 2px 5px}
+.ie-field{display:flex;flex-direction:column;gap:5px;font-size:11px;line-height:1.4;color:#56675b;min-width:0}
+.ie-field.wide{grid-column:1/-1}
+.ie-field input,.ie-field select,.ie-field textarea{width:100%;min-width:0;box-sizing:border-box;min-height:32px;border:1px solid #d5ded4;border-radius:4px;background:#fff;padding:7px 8px;color:#25382c;font:inherit}
+.ie-field textarea{resize:vertical;min-height:70px}
+.ie-input-row{display:flex;align-items:center;gap:7px;min-width:0}
+.ie-input-row input{flex:1}
+.ie-input-row small{white-space:nowrap;color:#89958b;font-size:10px}
+.ie-small{font-size:10px;color:#7b897e;line-height:1.6;margin:8px 0 0}
+.ie-status{margin:12px 0;padding:10px 12px;border:1px solid #e7cc8e;border-radius:5px;background:#fff9e9;color:#6e5420;font-size:11px;line-height:1.6}
+.ie-status p{margin:4px 0 0}
+.ie-reference{padding-top:9px;border-top:1px solid #e1e8df;font-size:10px;line-height:1.8;color:#748177}
+.ie-reference a{color:#166b4b;text-decoration:underline;margin-right:7px}
+.ie-table-wrap{overflow:auto;max-height:260px;border:1px solid #e1e8df;border-radius:5px}
+.ie-table-wrap table{min-width:600px}
+.ie-table-wrap th,.ie-table-wrap td{padding:8px 10px}
+.ie-design-layout details{border:1px solid #e1e8df;border-radius:5px;padding:8px 10px;background:#fff}
+.ie-design-layout details>summary{cursor:pointer;font-weight:700;font-size:11px;color:#3c5a47}
+@media(max-width:640px){.ie-fields{grid-template-columns:1fr}.ie-field.wide{grid-column:auto}.ie-table-wrap table{min-width:540px}}
+
+
+/* Visual selector for the three internal wall intersection construction details. */
+.junction-detail-label{font-size:11px;font-weight:700;color:var(--text,#273444);margin:13px 0 7px}
+.junction-detail-options{display:grid;grid-template-columns:1fr;gap:6px;margin:0 0 9px}
+.junction-detail-option{position:relative;display:grid;grid-template-columns:94px minmax(0,1fr) 18px;align-items:center;gap:8px;width:100%;min-width:0;padding:7px 8px;border:1px solid var(--border,#d8dee8);border-radius:7px;background:var(--panel,#fff);color:var(--text,#273444);text-align:left;cursor:pointer}
+.junction-detail-option:hover{border-color:#a78bfa;background:var(--hover,#faf8ff)}
+.junction-detail-option.is-selected{border-color:#7c3aed;background:rgba(124,58,237,.07);box-shadow:inset 0 0 0 1px rgba(124,58,237,.18)}
+.junction-detail-diagram{display:block;width:94px;height:44px;flex:none}
+.junction-detail-option-copy{display:flex;min-width:0;flex-direction:column;gap:3px}
+.junction-detail-option-copy b{font-size:11px;line-height:1.25}
+.junction-detail-option-copy small{font-size:10px;line-height:1.3;color:var(--muted,#64748b)}
+.junction-detail-check{font-size:13px;font-weight:800;color:#7c3aed;text-align:center}
+
+</style><style>.truss-review{max-width:1100px;color:var(--text,#17212b)}.truss-review-banner{padding:14px;border:1px solid #e5b86c;background:#fff8e8;border-radius:9px}.truss-review-banner p,.truss-muted,.truss-review-intro{font-size:12px;line-height:1.5;color:#5b6572}.truss-kpis{display:grid;grid-template-columns:repeat(4,minmax(90px,1fr));gap:8px;margin:14px 0}.truss-kpis div{border:1px solid #dfe4ea;border-radius:8px;padding:10px}.truss-kpis b,.truss-kpis span{display:block}.truss-kpis b{font-size:21px}.truss-kpis span{font-size:11px;color:#64748b}.truss-table-wrap{overflow:auto;max-height:340px;border:1px solid #e2e8f0;border-radius:8px}.truss-table{width:100%;border-collapse:collapse;font-size:12px;min-width:780px}.truss-table th,.truss-table td{padding:8px;border-bottom:1px solid #e2e8f0;text-align:left}.truss-table th{position:sticky;top:0;background:#f8fafc}.truss-status{font-weight:700;font-size:10px;padding:3px 6px;border-radius:4px;background:#fff2d5;color:#8a5a00}.truss-status.fail{background:#fee2e2;color:#991b1b}.truss-checklist{font-size:12px;line-height:1.9}.truss-review-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap}.truss-review-intro{margin:8px 0}.truss-basis-grid{display:grid;grid-template-columns:repeat(2,minmax(180px,1fr));gap:10px;margin:14px 0}.truss-basis-field{display:flex;flex-direction:column;gap:4px;font-size:12px;color:#475569}.truss-basis-field input{min-width:0;width:100%;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:6px;padding:8px;background:white;color:#17212b}.truss-basis-check{display:flex;align-items:center;gap:8px;font-size:12px;margin:12px 0}.truss-status.review{background:#fff2d5;color:#8a5a00}@media(max-width:700px){.truss-kpis{grid-template-columns:repeat(2,minmax(80px,1fr))}}</style><link rel="stylesheet" href="truss-analysis-ui.css?v=20261107-v8"></head><body>
+<div id="root" style="display:none"></div>
+<header><div class="brand"><span class="mark" style="background:#006dae;color:#fff;font-weight:800;border-radius:4px;padding:1px 5px;font-size:11px;letter-spacing:0.5px">AC</span> ARCHICAD 28<span class="brand-sub">BIM STUDIO PRO</span></div><nav id="menus"><button data-menu="File">File</button><button data-menu="Edit">Edit</button><button data-menu="View">View</button><button data-menu="Design">Design</button><button data-menu="Document">Document</button><button data-menu="Options">Options</button><button data-menu="Teamwork">Teamwork</button><button data-menu="Window">Window</button><button data-menu="Help">Help</button></nav><div class="header-right"><button id="trace-btn" class="trace-indicator active" title="Trace & Reference (Alt+F2)"><span class="trace-dot"></span> Trace: Below</button><span class="local-indicator"></span><span id="save-state">Archicad BIM ready</span><button class="avatar" title="Archicad Teamwork User">AC</button></div></header>
+<div class="projectbar"><div class="project-title"><span class="project-icon" data-icon="building"></span><div><strong id="project-name">Courtyard House</strong><span>Residential / Concept design · Archicad Solo/Teamwork</span></div><span class="project-chevron">⌄</span></div><div class="project-actions"><span class="pill">BIM LEVEL 2</span><button id="open-cadtech-btn" class="primary" data-icon="layers" style="background:#0f766e;color:#fff;border-color:#0f766e;font-weight:700" title="Switch to CadTech Wall Panel & Truss Studio">CadTech Studio</button><button id="import-ifc-btn" class="primary" data-icon="export" style="background:#0284c7;color:#fff;border-color:#0284c7;font-weight:700" title="Import ArchiCAD Project File (.pln / .ifc / .xml / .json)">Import ArchiCAD (.pln / .ifc)</button><button id="wall-pdf-btn" class="subtle" data-icon="table" style="background:#0284c7;color:#fff;border-color:#0284c7;font-weight:700" title="Generate Formatted Wall Framing & Cut List PDF Report">Wall PDF</button><label id="wall-osb-toggle-wrap" class="osb-toggle" title="ON: include 12 mm OSB sheathing and cut-piece schedules on exterior wall panels. OFF: omit OSB from panel drawings and takeoff."><input id="wall-osb-toggle" type="checkbox" checked aria-label="Include 12 mm OSB on exterior wall panels"><span>12 mm OSB</span><b id="wall-osb-toggle-state">ON</b></label><label id="wall-dimensions-toggle-wrap" class="osb-toggle" style="background:#e0f2fe;border-color:#7dd3fc;color:#0369a1" title="Toggle whether dimension text and labels are included in the generated DXF/PDF output for a cleaner architectural look."><input id="wall-dimensions-toggle" type="checkbox" checked aria-label="Include dimensions and labels in export"><span>Dimensions</span><b id="wall-dimensions-toggle-state">ON</b></label><label id="wall-blocking-toggle-wrap" class="osb-toggle off" style="background:#fef2f2;border-color:#fecaca;color:#991b1b" title="Toggle horizontal wall blocking in 2D framing plan (Default: OFF per timber framing standard)."><input id="wall-blocking-toggle" type="checkbox" aria-label="Show wall blocking in 2D framing plan"><span>Blocking</span><b id="wall-blocking-toggle-state">OFF</b></label><label id="wall-openings-toggle-wrap" class="osb-toggle off" style="background:#f0f9ff;border-color:#bae6fd;color:#0369a1" title="Toggle window and door graphics in 2D framing plan (OFF = Show Hidden dashed lines only; ON = Show window/door sash)."><input id="wall-openings-toggle" type="checkbox" aria-label="Show window and door graphics in 2D framing plan"><span>Openings</span><b id="wall-openings-toggle-state">HIDDEN</b></label><label class="osb-toggle" style="background:#fdf4ff;border-color:#f5d0fe;color:#701a75" title="Set the size of dimension text and labels in the wall panel elevation view."><span data-icon="text" style="margin-right:4px"></span><span>Text Size</span><select id="wall-text-size" style="background:transparent;border:0;font-size:9px;font-weight:700;color:#701a75;padding:0;margin-left:4px;cursor:pointer"><option value="small">SMALL</option><option value="medium" selected>MEDIUM</option><option value="large">LARGE</option></select></label><button id="wall-panel-pdf-btn" class="subtle" data-icon="table" style="background:#0f766e;color:#fff;border-color:#0f766e;font-weight:700" title="Single PDF: wall layout (2D framing plan), every wall elevation with cut list and sheathing, opening schedule">Wall Panel Package PDF</button><button id="wall-panel-dxf-btn" class="subtle" data-icon="export" style="background:#0284c7;color:#fff;border-color:#0284c7;font-weight:700" title="Export Wall Panel Elevations to DXF">Wall Panel DXF</button><button id="wall-panel-dwg-btn" class="subtle" data-icon="export" style="background:#0369a1;color:#fff;border-color:#0369a1;font-weight:700" title="Export Wall Panel Elevations to DWG">Wall Panel DWG</button><button id="framing-plan-dxf-btn" class="subtle" data-icon="export" style="background:#0369a1;color:#fff;border-color:#0369a1;font-weight:700" title="Export 2D Framing Plan to CAD (2D-FRAMING-PLAN.dxf)">2D Framing Plan DXF</button><button id="floor-pdf-btn" class="subtle" data-icon="table" style="background:#0284c7;color:#fff;border-color:#0284c7;font-weight:700" title="Generate Formatted EWP Floor Framing PDF Report">Floor PDF</button><button id="truss-pdf-btn" class="primary" data-icon="table" style="background:#0f766e;color:#fff;border-color:#0f766e;font-weight:700" title="Generate Formatted Roof Truss Engineering PDF Report">CadTech Truss Design PDF</button><button id="truss-elevation-btn" class="primary" data-icon="elevation" style="background:#0284c7;color:#fff;border-color:#0284c7;font-weight:700" title="Interactive 2D Roof Truss Elevation & Stress Inspector (ASD/NDS/Eurocode 5)">Truss Elevation 2D</button><button id="truss-analysis-btn" class="primary" style="background:#059669;color:#fff;border-color:#059669;font-weight:700" title="Auto-size, optimize and independently screen every roof truss">Run Auto Analysis on All Trusses</button><button id="master-pdf-btn" class="primary" data-icon="table" style="background:#4338ca;color:#fff;border-color:#4338ca;font-weight:700" title="Generate Master Structural Engineering PDF Package">Master PDF Package</button><button id="open-project" class="subtle" data-icon="open" title="Open a previously saved BIM project JSON from your local drive">Open project</button><button id="save" class="subtle" data-icon="save" title="Save the BIM model and workspace settings to a local project JSON file">Save project</button><button id="export" class="subtle" data-icon="export">Export IFC/OBJ</button></div></div>
+<div class="ribbon"><div class="ribbon-group"><button id="undo" data-icon="undo" title="Undo · Ctrl Z"></button><button id="redo" data-icon="redo" title="Redo · Ctrl Shift Z"></button></div><div class="ribbon-group"><button id="pipette-btn" data-icon="pipette" title="Pick Parameters (Pipette · Alt)">Pick</button><button id="syringe-btn" data-icon="syringe" title="Inject Parameters (Syringe · Ctrl+Alt)">Inject</button><button id="wand-btn" data-icon="fit" title="Magic Wand (Hold Space & Click)">Wand</button></div><div class="ribbon-group"><button data-edit="move" data-icon="move" title="Drag / Move (Ctrl D)">Move</button><button data-edit="rotate" data-icon="rotate" title="Rotate (Ctrl E)">Rotate</button><button data-edit="mirror" data-icon="mirror" title="Mirror (Ctrl M)">Mirror</button><button data-edit="elevate" data-icon="elevation" title="Elevate (Ctrl 9)">Elevate</button><button data-edit="array" data-icon="copy" title="Multiply (Ctrl U)">Multiply</button><button data-edit="split" data-icon="section" title="Split (Ctrl K)">Split</button><button data-edit="join" data-icon="link" title="Trim / Adjust (Ctrl -)">Trim</button><button data-edit="intersect" data-icon="fit" title="Intersect (Ctrl I)">Intersect</button><button data-edit="fillet" data-icon="circle" title="Fillet / Chamfer">Fillet</button><button data-edit="delete" data-icon="trash" title="Delete selected (Del)"></button></div><div class="ribbon-group"><button id="snap-btn" class="enabled" data-icon="snap">Snaps <span class="key">S</span></button><button id="grid-btn" class="enabled" data-icon="grid">Grid <span class="key">G</span></button><button id="ortho-btn" data-icon="coordinate" title="Ortho Lock 0°/45°/90° (Shift)">Ortho <span class="key">Shift</span></button><button id="tracker-btn" class="enabled" data-icon="coordinate" title="Tracker HUD (Tab / N)">Tracker <span class="key">Tab</span></button><button id="guide-btn" class="enabled" data-icon="layers">Guides</button><button id="corner-detail-btn" class="enabled" data-icon="wall" title="Wall Framing Connections (10 Exterior & Interior Connection Styles)">Wall Connections</button></div><div class="ribbon-spacer"></div><button id="units">Millimeters <span>⌄</span></button><button id="fit" data-icon="fit">Fit to view</button><button id="help" data-icon="help" title="Archicad Help & Shortcuts"></button></div>
+<div id="info-box" class="info-box"><div class="info-section"><span class="info-label">TOOL</span><span id="info-tool-name" style="font-weight:700">Arrow Tool</span></div></div>
+<main><aside class="toolbox"><div class="panel-caption">ARCHICAD TOOLBOX <span>⌘</span></div><div id="tools"></div><div class="toolbox-footer"><span class="tiny-label">VIRTUAL BUILDING</span><div class="foundation"><span data-icon="link"></span> Graphisoft BIM Engine</div></div></aside>
+<section class="workspace"><div class="view-tabs"><button class="view-tab active" data-view="plan" data-icon="plan">Ground floor <span class="tab-dot"></span></button><button class="view-tab" data-view="3d" data-icon="cube">3D model</button><button class="view-tab" data-view="elevation" data-icon="elevation">South elevation</button><button class="view-tab" data-view="section" data-icon="section">Section A–A</button><button class="view-tab" data-view="schedule" data-icon="table">Schedule</button><button class="view-tab" data-view="panel" data-icon="wall">Wall panel</button><button class="view-tab" data-view="framingplan" data-icon="plan">2D framing plan</button><button class="view-tab" data-view="audit" data-icon="layers" style="background:#fef2f2;color:#dc2626;font-weight:700">🛡️ Audit</button><button class="view-tab" data-view="roofframingplan" data-icon="roof">Roof framing plan</button><button class="view-tab" data-view="trusselevation" data-icon="elevation" style="background:#0f172a;color:#38bdf8;font-weight:700">⚡ Truss Elevation & Stresses</button><button class="view-tab" data-view="ewpspecs" data-icon="table" style="background:#e0f2fe;color:#0369a1;font-weight:700">Floor framing plan</button><button class="view-tab" data-view="framing3d" data-icon="beam">3D framing</button><button class="view-tab" data-view="cutlist" data-icon="table">Cut list</button><button class="tab-add" id="view-more" title="View options">+</button></div>
+<div class="canvas-area" id="canvas-area"><div id="truss-elevation-panel" class="hidden" style="position:absolute;inset:0;background:#f8fafc;z-index:15;overflow:hidden;display:flex;flex-direction:column"></div><canvas id="canvas" aria-label="Architectural model workspace" tabindex="0"></canvas><div class="canvas-heading"><div><span id="view-kicker">FLOOR PLAN</span><h1 id="view-title">00 Ground floor</h1></div><span class="view-scale" id="view-scale">1 : 100</span></div><div class="camera-toolbar hidden" id="camera-toolbar"><select id="camera-projection" aria-label="Camera projection"><option value="perspective">Perspective</option><option value="orthographic">Orthographic</option></select><select id="camera-shading" aria-label="3D display style"><option value="shaded">Shaded</option><option value="materials">Materials</option><option value="hiddenline">Hidden line</option><option value="xray">X-ray</option></select><button id="camera-cut" data-icon="section" title="Adjust 3D clipping">Cut</button><button id="camera-inspector" data-icon="layers">Properties</button><button id="camera-focus" data-icon="fit" title="Focus viewport" aria-label="Focus viewport"></button></div><div id="clip-panel" class="clip-panel hidden"><div class="clip-heading">3D CUTTING PLANE <button id="cut-close" data-icon="close" title="Close cutting controls"></button></div><label class="clip-toggle"><input id="cut-enabled" type="checkbox"> Enable clipping</label><div class="clip-fields"><label>Axis <select id="cut-axis"><option value="x">X</option><option value="y">Y</option><option value="z">Z</option></select></label><label>Keep <select id="cut-side"><option value="below">Below plane</option><option value="above">Above plane</option></select></label></div><label class="clip-position">Position · mm <input id="cut-position" type="number" value="1400" step="100"></label><input id="cut-slider" aria-label="Cut plane position" type="range" step="10"><button id="cut-section" class="subtle">Use section A–A</button></div><div class="view-cube hidden" id="view-cube"><button class="cube-top" data-camera="top" title="Top view">TOP</button><div class="cube-row"><button id="camera-left" title="Orbit left">‹</button><button class="cube-center" data-camera="isometric" data-icon="cube" title="Isometric view"></button><button id="camera-right" title="Orbit right">›</button></div><div class="cube-bottom"><button data-camera="front">FRONT</button><button data-camera="right">RIGHT</button></div><select id="camera-preset" aria-label="Camera view"><option value="isometric">Isometric</option><option value="top">Top</option><option value="front">Front</option><option value="right">Right</option><option value="custom">Custom orbit</option></select></div><div class="selection-model hidden" id="selection-model"><span class="live-dot"></span><span id="selection-model-text"></span><button id="selection-properties">Settings</button><span id="camera-projection-label">Perspective</span></div><div class="canvas-controls"><button id="display-mode" data-icon="layers">Architectural <span>⌄</span></button><button id="clip" class="hidden" data-icon="section">Section cut</button></div><div class="north" id="north"><span>N</span><svg viewBox="0 0 32 42"><path d="M16 1L27 31L16 25L5 31Z" fill="none" stroke="currentColor"/><path d="M16 1V25L5 31Z" fill="currentColor"/></svg></div><div class="floating-nav"><button id="zoom-in" data-icon="plus" title="Zoom in"></button><button id="zoom-out" data-icon="minus" title="Zoom out"></button><span></span><button id="pan" data-icon="hand" title="Pan"></button><button id="reset-camera" data-icon="fit" title="Reset camera"></button></div><div id="framing-plan-auto-fix-hud" class="framing-plan-auto-fix-hud hidden" role="region" aria-label="2D Framing Plan Auto-Fix Controls"><div style="font-size:10px;font-weight:700;color:#0f172a;letter-spacing:0.5px;margin-bottom:5px;display:flex;align-items:center;gap:4px"><span>⚡</span><span>STUD FRAMING AUDIT ACTIONS</span></div><div style="display:flex;gap:6px"><button id="btn-autofix-overlapping-studs" class="hud-auto-btn" style="background:#0284c7;color:white;font-weight:700;font-size:11px;padding:7px 12px;border-radius:6px;border:none;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,0.1)" title="Auto-adjust and shift all overlapping studs across wall junctions">⚡ Auto-Adjust Overlapping Studs</button><button id="btn-autofix-all-collisions" class="hud-auto-btn" style="background:#059669;color:white;font-weight:700;font-size:11px;padding:7px 12px;border-radius:6px;border:none;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,0.1)" title="Auto-fix all intra-wall stud collisions">⚡ Auto-Fix All Collisions</button></div></div><div class="model-badge"><span class="live-dot"></span> <span id="model-badge-text">2D + 3D synchronized</span></div><div id="draft-tracker" class="draft-tracker small-tracker-tab" role="region" aria-label="CAD Coordinate Tracker"><button id="tracker-tab-handle" class="tracker-tab-pill" title="Toggle Tracker Tab (Tab / N)"><span class="tracker-tab-icon">⇥</span><span>TRACKER</span></button><div class="tracker-body"><label class="tracker-field" title="Distance / Radius [R / D] · Tab"><span class="tracker-tag">R</span><input id="draft-length" type="number" step="10" placeholder="0" aria-label="Distance in millimeters"><span class="tracker-unit">mm</span></label><label class="tracker-field" title="Angle [A] · Tab"><span class="tracker-tag">A</span><input id="draft-angle" type="number" step="0.5" placeholder="0.0" aria-label="Angle in degrees"><span class="tracker-unit">°</span></label><label class="tracker-field" title="X Coordinate [X] · Tab"><span class="tracker-tag">X</span><input id="draft-coord-x" type="number" step="10" placeholder="0" aria-label="X Coordinate in millimeters"><span class="tracker-unit">mm</span></label><label class="tracker-field" title="Y Coordinate [Y] · Tab"><span class="tracker-tag">Y</span><input id="draft-coord-y" type="number" step="0.5" placeholder="0" aria-label="Y Coordinate in millimeters"><span class="tracker-unit">mm</span></label><button id="draft-place" class="tracker-commit" title="Commit point at coordinates (Enter)">↵</button></div></div><div class="wall-palette hidden" id="wall-palette"><button data-edit="stretch" data-icon="move" title="Stretch endpoint"></button><button data-edit="move" data-icon="hand" title="Move wall"></button><button data-edit="offset" data-icon="layers" title="Offset wall"></button><button data-edit="copy" data-icon="copy" title="Copy wall"></button><button id="wall-rotate" data-icon="rotate" title="Rotate wall"></button><button id="wall-array" data-icon="copy" title="Multiply walls"></button><button id="wall-dimension" data-icon="dimension" title="Associative wall dimension"></button><button id="wall-flip" data-icon="mirror" title="Flip wall reference orientation"></button><button data-edit="split" data-icon="section" title="Split wall"></button><button data-edit="join" data-icon="link" title="Trim or extend wall"></button></div><div id="pet-palette" class="pet-palette hidden"></div><div id="selection-tip"></div><div id="schedule-panel" class="hidden"></div><div id="ewp-hud" class="ewp-hud hidden" role="region" aria-label="EWP Beam Sizing HUD"><div class="ewp-hud-header"><div style="display:flex;align-items:center;gap:6px"><span style="color:#0284c7;font-size:13px">⚡</span><strong style="font-size:11px;color:#0f172a">EWP REAL-TIME BEAM SIZER</strong></div><div style="display:flex;gap:4px"><button id="ewp-hud-modal-btn" class="subtle-icon-btn" title="Open Full Specs & Span Tables">📋</button><button id="ewp-hud-toggle-btn" class="subtle-icon-btn" title="Toggle HUD">⌄</button></div></div><div id="ewp-hud-body" class="ewp-hud-body"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><span style="font-size:10px;color:#64748b;font-weight:700">MEMBER</span><select id="hud-beam-select" style="font-size:10.5px;padding:2px 4px;border:1px solid #cbd5e1;border-radius:4px;background:white"><option value="B-001">Beam B-001 (Center Girder)</option><option value="H-001">Header H-001 (Opening)</option></select></div><div class="hud-slider-group"><div style="display:flex;justify-content:space-between;font-size:10.5px;margin-bottom:2px"><span style="color:#475569;font-weight:600">Beam Clear Span (L)</span><b id="hud-span-text" style="color:#0284c7">18.0 ft</b></div><input id="hud-span-slider" type="range" min="8" max="32" step="0.5" value="18" style="width:100%;accent-color:#0284c7"></div><div class="hud-slider-group" style="margin-top:6px"><div style="display:flex;justify-content:space-between;font-size:10.5px;margin-bottom:2px"><span style="color:#475569;font-weight:600">Tributary Width (W_trib)</span><b id="hud-trib-text" style="color:#0284c7">14.0 ft</b></div><input id="hud-trib-slider" type="range" min="4" max="26" step="0.5" value="14" style="width:100%;accent-color:#0284c7"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px"><div><div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:2px"><span style="color:#475569">Live Load</span><b id="hud-live-text" style="color:#0284c7">40 psf</b></div><input id="hud-live-slider" type="range" min="20" max="100" step="5" value="40" style="width:100%;accent-color:#0284c7"></div><div><div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:2px"><span style="color:#475569">Dead Load</span><b id="hud-dead-text" style="color:#0284c7">15 psf</b></div><input id="hud-dead-slider" type="range" min="10" max="35" step="1" value="15" style="width:100%;accent-color:#0284c7"></div></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:8px;background:#f8fafc;padding:6px;border-radius:6px;border:1px solid #e2e8f0;font-size:9.5px"><div><span style="color:#64748b">Trib Area:</span> <b id="hud-out-area" style="color:#0f172a;display:block">252 sq ft</b></div><div><span style="color:#64748b">Uniform:</span> <b id="hud-out-load" style="color:#0f172a;display:block">791 plf</b></div><div><span style="color:#64748b">Total Demand:</span> <b id="hud-out-total" style="color:#0f172a;display:block">14,240 lbs</b></div><div><span style="color:#64748b">Max Moment:</span> <b id="hud-out-m" style="color:#0f172a;display:block">32.0 k-ft</b></div><div><span style="color:#64748b">Max Shear:</span> <b id="hud-out-v" style="color:#0f172a;display:block">7,120 lbs</b></div><div><span style="color:#64748b">End Reaction:</span> <b id="hud-out-r" style="color:#0f172a;display:block">7,120 lbs</b></div></div><div style="margin-top:8px;background:#ffffff;border:1px solid #cbd5e1;border-radius:6px;padding:6px"><div style="display:flex;justify-content:space-between;font-size:10.5px;margin-bottom:3px"><strong id="hud-cur-name">2-Ply LVL 1-3/4x11-7/8</strong><b id="hud-cur-dc" style="color:#16a34a">78% PASS</b></div><div style="background:#e2e8f0;height:5px;border-radius:3px;overflow:hidden"><div id="hud-dc-bar" style="height:100%;width:78%;background:#22c55e"></div></div><div style="display:flex;justify-content:space-between;font-size:9px;color:#64748b;margin-top:3px"><span id="hud-cur-gov">Gov: Live Deflection</span><span id="hud-cur-brg">Min Brg: 2.7"</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:6px"><span style="font-size:9px;color:#15803d;font-weight:700;display:block">⚡ RECOMMENDED OPTIMAL MEMBER</span><div style="display:flex;justify-content:space-between;align-items:center;margin-top:2px"><strong id="hud-opt-name" style="font-size:11px;color:#0369a1">2-Ply LVL 1-3/4x11-7/8</strong><span id="hud-opt-dc" style="font-size:9.5px;font-weight:700;color:#16a34a">D/C 78%</span></div></div><div style="display:flex;gap:4px;margin-top:8px"><button id="hud-apply-btn" style="flex:1;padding:5px;background:#16a34a;color:white;border:none;border-radius:4px;font-weight:700;font-size:10.5px;cursor:pointer">⚡ Apply Auto-Sized Member</button><button id="hud-autosize-all-btn" style="padding:5px 7px;background:#0284c7;color:white;border:none;border-radius:4px;font-weight:700;font-size:10.5px;cursor:pointer" title="Auto-size all floor beams">Size All</button></div><label style="display:flex;align-items:center;gap:6px;margin-top:6px;font-size:10px;color:#475569;cursor:pointer"><input id="hud-hatch-toggle" type="checkbox" checked> Show Tributary Area Hatch & Dimensions</label></div></div></div>
+<div class="command-bar"><span class="command-symbol">⌁</span><span id="command-text">Select an element to inspect. Scroll to zoom; hold Space to pan.</span><span class="command-escape">Esc to cancel</span></div></section>
+<aside class="inspector"><div class="inspector-tabs"><button class="active" data-panel="properties">Properties</button><button data-panel="navigator">Navigator</button></div><div id="properties"></div><div class="navigator" id="navigator"><div class="nav-map-bar"><button class="nav-map-btn active" data-nav-map="project" title="Project Map"><span data-icon="plan"></span>Project</button><button class="nav-map-btn" data-nav-map="views" title="View Map"><span data-icon="layers"></span>Views</button><button class="nav-map-btn" data-nav-map="layouts" title="Layout Book"><span data-icon="table"></span>Layouts</button><button class="nav-map-btn" data-nav-map="publish" title="Publisher Sets"><span data-icon="export"></span>Publish</button></div><div id="nav-container"><div id="nav-project-map"><div class="section-header">PROJECT NAVIGATOR <button id="add-story" title="Add story">+</button></div><div class="tree-root" data-icon="building">Courtyard House</div><div class="tree-label">⌄ &nbsp; Stories</div><div id="stories"></div><div class="tree-label">⌄ &nbsp; Model views</div><button class="tree-view" data-view="3d" data-icon="cube">3D axonometric</button><button class="tree-view" data-view="elevation" data-icon="elevation">South elevation</button><button class="tree-view" data-view="section" data-icon="section">A–A Building section</button><button class="tree-view" data-view="panel" data-icon="wall">Wall framing panel</button><button class="tree-view" data-view="ewpspecs" data-icon="table" style="font-weight:700;color:#0284c7">Floor framing plan</button><button class="tree-view" data-view="framing3d" data-icon="beam">3D timber framing</button><button class="tree-view" data-view="cutlist" data-icon="table">Timber framing cut list</button><button class="tree-view" data-view="schedule" data-icon="table">Element schedule</button><div class="section-header layer-heading">LAYERS <span id="layer-count">4</span></div><div id="layers"></div></div><div id="nav-other-map" class="hidden"></div></div></div></aside></main>
+<footer><div class="tracker"><span class="axis x">X</span><input id="track-x" aria-label="X coordinate in millimeters" value="0"><span class="axis y">Y</span><input id="track-y" aria-label="Y coordinate in millimeters" value="0"><span>mm</span><button id="track-enter" title="Place point at coordinates">↵</button></div><div class="footer-middle"><div class="quick-options"><span id="snap-status">⊙ Snap on</span><span id="zoom-status">100%</span><select id="quick-scale" class="quick-btn" title="Drawing Scale"><option value="20">1 : 20</option><option value="50">1 : 50</option><option value="100" selected>1 : 100</option><option value="200">1 : 200</option><option value="500">1 : 500</option></select><button id="story-btn">00 Ground floor ⌄</button><select id="quick-layer-combo" class="quick-btn" title="Layer Combination"><option value="arch">01 Architectural</option><option value="struct">02 Structural Framing</option><option value="mep">03 MEP Services</option><option value="all">04 Show All</option></select><select id="quick-renovation" class="quick-btn" title="Renovation Filter"><option value="planned">01 Planned Status</option><option value="existing">02 Existing Plan</option><option value="demo">03 Demolition</option><option value="new">04 New Construction</option></select><select id="quick-override" class="quick-btn" title="Graphic Overrides"><option value="none">01 No Overrides</option><option value="struct">02 Structural Focus</option><option value="fire">03 Fire Compartment</option></select></div></div><div class="footer-end"><span id="elements-count"></span><span class="live-dot"></span> BIM model</div></footer>
+<div id="toast" role="status"></div><div id="menu-popover" class="hidden"></div><dialog id="modal"><div class="modal-top"><h2 id="modal-title"></h2><button id="modal-close" data-icon="close" aria-label="Close dialog"></button></div><div id="modal-body"></div></dialog><input type="file" id="import-file" accept=".pln,.ifc,.ifczip,.xml,.json" hidden><input type="file" id="project-file-input" accept=".json,.bim.json,application/json" hidden><input type="file" id="import-ifc-file" accept=".pln,.ifc,.ifczip,.ifcxml,.xml,.json,.bim" hidden><script src="/joins.js"></script><script src="/framing.js?v=20261110-v23"></script> <script src="/wall-panel-package.js?v=20261110-v23"></script><script src="/camera.js?v=20261110-v23"></script><script src="/advanced.js"></script><script src="/trim.js"></script><script src="/editing.js"></script><script type="module" src="/ewp-system.js"></script><script src="/renderer.js"></script><script src="/framing-plan.js?v=20261110-v23"></script><script src="/roof-footprint.js"></script><script src="/roof.js"></script><script src="/truss-joints.js"></script><script src="/hip-trusses.js"></script><script src="/roof-framing.js?v=20261110-v23"></script><script src="/truss-optimizer.js?v=20261107-v8"></script><script src="/truss-sync.js?v=20261107-v8"></script><script type="module" src="/report.js?v=20261110-v23"></script><script src="/ifc-converter.js"></script><script src="/app.js?v=20261110-v23"></script><script type="module" src="truss-analysis-ui.js?v=20261107-v8"></script><script type="module" src="/viewport3d.js?v=20261110-v23"></script><script type="module" src="/src/main.tsx?v=20261110-v23"></script></body></html>
+
+
